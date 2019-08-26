@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 
 services:
   eureka-server:
@@ -29,4 +29,15 @@ services:
     image: zuul-api
     hostname: localhost
     ports:
-      - 8080:8080
+      - 8081:8081
+
+  notification-service:
+    image: notificationservice
+    build: notification-service/
+    container_name: notificationservice-container
+    network_mode: host
+    hostname: localhost
+    ports:
+      - 8404:8080
+    healthcheck:
+      test: "exit 0"
